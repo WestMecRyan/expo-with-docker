@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  expo-app:
+    build: .
+    container_name: expo-dev-container
+    volumes:
+      - ./:/app
+    ports:
+      - "127.0.0.1:19000:19000"  # Expo app
+      - "127.0.0.1:19001:19001"  # Expo app alternate
+      - "127.0.0.1:19002:19002"  # Expo DevTools
+      - "127.0.0.1:19006:19006"  # Expo web
+      - "127.0.0.1:8081:8081"    # Metro bundler
+    environment:
+      - EXPO_DEVTOOLS_LISTEN_ADDRESS=0.0.0.0
+      - REACT_NATIVE_PACKAGER_HOSTNAME=0.0.0.0
+    restart: unless-stopped
